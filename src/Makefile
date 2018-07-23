@@ -4,7 +4,7 @@ LDFLAGS  = ${CFLAGS}
 LIBS     =
 INCLUDE  =
 RUSTC    = rustc
-RSFLAGS  = --crate-type="dylib"
+RSFLAGS  = --crate-type="cdylib"
 TARGET   = ./$(shell basename `readlink -f ..`)
 OBJDIR   = ./obj
 ifeq "$(strip $(OBJDIR))" ""
