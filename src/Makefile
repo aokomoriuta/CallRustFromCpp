@@ -15,10 +15,10 @@ OBJECTS_C = $(addprefix $(OBJDIR)/, $(SOURCES_C:.cpp=.o))
 DEPENDS  = $(OBJECTS:.o=.d)
 SOURCES_RS = $(wildcard *.rs)
 OBJECTS_RS = $(addprefix $(OBJDIR)/lib, $(SOURCES_RS:.rs=.so))
-LDFLAGS += $(addprefix -l, $(SOURCES:.cpp=)) -L$(OBJDIR) -Xlinker -rpath -Xlinker $(OBJDIR)
+LDFLAGS += $(addprefix -l, $(SOURCES_RS:.rs=)) -L$(OBJDIR) -Xlinker -rpath -Xlinker $(OBJDIR)
 
 $(TARGET): $(OBJECTS_C) $(OBJECTS_RS) $(LIBS)
-	$(COMPILER) -o $@ $^ $(LDFLAGS)
+	$(COMPILER) -o $@ $(OBJECTS_C) $(LIBS) $(LDFLAGS)
 
 $(OBJDIR)/%.o: %.cpp
 	@[ -d $(OBJDIR) ] || mkdir -p $(OBJDIR)
